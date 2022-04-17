@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply text-gray-700;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.card-pink {
+  @apply bg-pink-200;
+}
+
+.card-red {
+  @apply bg-red-200;
+}
+
+.card-orange {
+  @apply bg-orange-200;
+}
+
+.card-yellow {
+  @apply bg-yellow-200;
+}
+
+.card-green {
+  @apply bg-green-200;
+}
+
+.card-purple {
+  @apply bg-purple-200;
+}
+
+.card-blue, .card-white {
+  @apply bg-sky-200;
+}
+
+.card-black, .card-gray {
+  @apply bg-gray-300;
+}
+
+.card-brown {
+  background-color: #d7ccc8;
+}
+
+.card, .card-pulse {
+  @apply relative p-4 rounded-2xl text-center;
+}
+
+.card::before {
+  content: ' ';
+  background-image: url('assets/img/pokeball-white.png');
+  background-size: cover;
+  @apply absolute top-0 right-0 w-1/3 aspect-square opacity-30;
+}
+
+.card-content {
+  @apply relative z-10;
+}
+
+.card-type {
+  @apply text-xs md:text-sm px-2 py-1 ml-2 rounded-xl;
+}
+
+.card-type:first-child {
+  @apply ml-0
+}
+
+.tab-detail {
+  @apply py-2 border-b-2 text-gray-400 text-sm md:text-base;
+}
+
+.tab-detail:hover, .tab-detail.active {
+  @apply border-cyan-700 text-cyan-700 font-medium;
+}
+
+.input {
+  @apply px-3 py-2 w-full rounded text-sm md:text-base text-gray-800 placeholder-gray-400 border bg-white border-gray-400 focus:outline-none focus:border-cyan-500 focus:ring-0 focus:ring-cyan-500;
+}
