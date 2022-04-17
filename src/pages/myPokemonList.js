@@ -14,7 +14,7 @@ function PokemonList() {
   const [getMyPokemons, {loading, error, data}] = useLazyQuery(GET_MY_POKEMONS);
 
   window.onscroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight - 10) {
       if(!loading && !error && myPokemons.length > 0) {
         getMyPokemons({variables: { limit, offset }})
       }
@@ -26,7 +26,7 @@ function PokemonList() {
   }
 
   const releasePokemon = () => {
-    const newMyPokemons = myPokemons.filter(obj => obj.id !== idSelected)
+    const newMyPokemons = myPokemons.filter(obj => obj.id_mypokemon !== idSelected)
     dispatch({
       type: 'UPDATE_MY_POKEMON',
       payload: newMyPokemons
@@ -89,7 +89,7 @@ function PokemonList() {
           {!loading && myPokemons.map((pokemon, index) => 
             <div
               key={index}
-              onClick={() => onSelectedItem(pokemon.id)}
+              onClick={() => onSelectedItem(pokemon.id_mypokemon)}
               className={`card card-${getItem(pokemon.id)?.color.name}`}
             >
               <div className="card-content">

@@ -4,7 +4,7 @@ const base = {
   },
   persenStat: (val, stats) => {
     let top = 0
-    stats.map((obj) => {
+    stats.forEach((obj) => {
       if(obj.stat.base_stat[0].value > top) {
         top = obj.stat.base_stat[0].value
       }

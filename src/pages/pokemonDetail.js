@@ -13,6 +13,7 @@ function PokemonDetail() {
   const [detail, setDetail] = useState({});
   const [tabActive, setTabActive] = useState(0);
   const [catchStatus, setCatchStatus] = useState(null);
+  const [haveNickname, setHaveNickname] = useState(false);
   const [nickname, setNickname] = useState('');
   const [getDetail, {loading, error, data}] = useLazyQuery(GET_DETAIL_POKEMON);
 
@@ -34,7 +35,18 @@ function PokemonDetail() {
     }, 3000)
   }
 
+  const validateName = () => {
+    const search = myPokemons.filter(obj => 
+      obj.nickname.toLowerCase() === nickname.toLowerCase()
+    )
+    const isValid = search.length === 0
+    if(!isValid) setHaveNickname(true)
+    return isValid
+  }
+
   const savePokemon = () => {
+    if(!validateName()) return
+
     setCatchStatus('finish')
     const selected = {
       id_mypokemon: myPokemons.length,
@@ -77,14 +89,18 @@ function PokemonDetail() {
   const Pulse = () => {
     return (
       <React.Fragment>
-        <div className="animate-pulse card-pulse bg-slate-400">
-          <div className="animate-pulse w-3/4 mx-auto aspect-square rounded-full bg-slate-300" />
-          <div className="animate-pulse text-lg w-full h-5 my-2 bg-slate-300"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="animate-pulse card-pulse bg-slate-400">
+            <div className="animate-pulse w-3/4 mx-auto aspect-square rounded-full bg-slate-300" />
+            <div className="animate-pulse text-lg w-full h-5 my-2 bg-slate-300"></div>
+          </div>
+          <div className="pb-6">
+            <div className="animate-pulse text-lg w-full h-5 my-4 bg-slate-300"></div>
+            <div className="animate-pulse text-lg w-1/2 h-5 my-4 bg-slate-300"></div>
+            <div className="animate-pulse text-lg w-3/4 h-5 my-4 bg-slate-300"></div>
+            <div className="animate-pulse text-lg w-2/3 h-5 my-4 bg-slate-300"></div>
+          </div>
         </div>
-        <div className="animate-pulse text-lg w-full h-5 my-4 bg-slate-300"></div>
-        <div className="animate-pulse text-lg w-1/2 h-5 my-4 bg-slate-300"></div>
-        <div className="animate-pulse text-lg w-3/4 h-5 my-4 bg-slate-300"></div>
-        <div className="animate-pulse text-lg w-2/3 h-5 my-4 bg-slate-300"></div>
       </React.Fragment>
     );
   };
@@ -249,7 +265,10 @@ function PokemonDetail() {
         {catchStatus === 'naming' &&
           <div className="bg-white rounded-md w-72 md:w-96 md p-4">
             <label>Pokemon name</label>
-            <input className="input my-1" placeholder="Give name to the Pokemon" onKeyUp={el => setNickname(el.target.value) } />
+            <input className={`input mt-1 ${haveNickname ? 'error' : ''}`} placeholder="Give name to the Pokemon" onKeyUp={el => setNickname(el.target.value) } />
+            {haveNickname &&
+              <span className="text-xs md:text-sm text-red-500">Nickname already used!</span>
+            }
             <div className="flex justify-end mt-2">
               <button
                 className="rounded-md bg-white border-cyan-700 border mr-1 text-cyan-white text-sm md:text-base px-6 py-1.5"
