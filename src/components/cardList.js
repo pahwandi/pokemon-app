@@ -7,14 +7,17 @@ function CardList({
   onSelected,
   countPokemon
 }) {
+  console.log(data);
   return (
     <NavLink
       to={to}
       onClick={() => onSelected(data.id_mypokemon)}
       className={`card card-${data.color.name}`}
     >
-      <div className="card-content pt-5">
-        <span className="card-type text-gray-600 bg-slate-100/50 absolute -left-2 -top-2">owned {countPokemon(data.id)}</span>
+      <div className={`card-content ${!!to ? 'pt-5' : ''}`}>
+        {!!to &&
+          <span className="card-type text-gray-600 bg-slate-100/50 absolute -left-2 -top-2">owned {countPokemon(data.id)}</span>
+        }
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`}
           className="w-1/2 mx-auto"

@@ -30,6 +30,7 @@ function PokemonList() {
   }
 
   const releasePokemon = () => {
+    console.log(idSelected)
     const newMyPokemons = myPokemons.filter(obj => obj.id_mypokemon !== idSelected)
     dispatch({
       type: 'UPDATE_MY_POKEMON',
@@ -45,6 +46,7 @@ function PokemonList() {
   }
 
   const onSelectedItem = (id) => {
+    console.log(id)
     setTimeout(() => {
       setReleaseStatus('alert')
       setIdSelected(id)
@@ -85,7 +87,7 @@ function PokemonList() {
             <CardList
               to={''}
               key={index}
-              data={{...getItem(pokemon.id), nickname: pokemon.nickname }}
+              data={{...pokemon, ...getItem(pokemon.id), nickname: pokemon.nickname }}
               countPokemon={() => {}}
               onSelected={val => onSelectedItem(val)}
             />
@@ -99,7 +101,7 @@ function PokemonList() {
         {!!releaseStatus &&
           <ModalRelease 
             setReleaseStatus={val => setReleaseStatus(val)}
-            releasePokemon={val => releasePokemon(val)}
+            releasePokemon={() => releasePokemon()}
           />
         }
         </React.Fragment>
