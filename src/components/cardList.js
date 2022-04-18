@@ -7,7 +7,6 @@ function CardList({
   onSelected,
   countPokemon
 }) {
-  console.log(data);
   return (
     <NavLink
       to={to}
