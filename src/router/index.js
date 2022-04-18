@@ -14,7 +14,7 @@ function Router() {
           <Route exact path="/" element={<PokemonList />}/>
           <Route path="/my-pokemons" element={<MyPokemonList />}/>
           <Route path="/pokemon-detail/:id" element={<PokemonDetail />}/>
-          <Route path="*" element={NotFound}/>
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </Layout>
     </BrowserRouter>

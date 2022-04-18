@@ -42,12 +42,12 @@ function Header() {
         <nav className={`${!activeMenu ? 'hidden' : ''} border-t-2 md:border-t-0 md:flex justify-end w-full py-2 md:py-4 md:px-2`}>
           <ul className="list-none flex flex-nowrap flex-col md:flex-row">
             <li>
-              <Link to="/" onClick={() => setActiveMenu(false)}>
+              <Link to="/" onClick={() => setOverlay(false)}>
                 <span className="block px-4 py-2">Pokemons</span>
               </Link>
             </li>
             <li>
-              <Link to="/my-pokemons" onClick={() => setActiveMenu(false)}>
+              <Link to="/my-pokemons" onClick={() => setOverlay(false)}>
                 <span className="block px-4 py-2  ">My Pokemons</span>
               </Link>
             </li>
